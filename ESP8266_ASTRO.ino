@@ -7,8 +7,8 @@
 #include <WiFiClient.h>
 #include <ESP8266HTTPClient.h>
 
-const char* ssid = "you_wifi_ssid";
-const char* password = "you_wifi_password";
+const char* ssid = "your_wifi_ssid";
+const char* password = "your_wifi_password";
 
 const char* ntpServer = "pool.ntp.org";
 const long gmtOffset = 7200;
@@ -49,7 +49,7 @@ const int manualOffHour2 = 22;
 const int desiredLumensIndoor = 500;
 const int desiredLumensOutdoor = 300;
 
-bool adaptiveSchedule[7] = {true, true, true, true, true, true, true};
+bool adaptiveSchedule[7] = {true, true, true, true, true, true, true}; // Schedule for each day of the week
 
 void setup() {
   Serial.begin(115200);
@@ -125,9 +125,7 @@ void connectToWiFi() {
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
-    Serial.println("Connecting to WiFi...");
   }
-  Serial.println("Connected to WiFi");
 }
 
 void toggleRelay(int pin) {
