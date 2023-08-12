@@ -21,6 +21,28 @@
 - `buttonPin1`, `buttonPin2`: Піни для підключення кнопок ручного керування.
 - `apiKey`, `city`, `country`: Параметри для отримання астрономічних даних з OpenWeatherMap.
 
+### Налаштування Параметрів
+
+```cpp
+const int relayPin1 = D1; - Пін для керування першим реле
+const int relayPin2 = D2; - Пін для керування другим реле
+const int adaptiveRelayPin = D3; - Пін для керування адаптивним реле
+const int buttonPin1 = D5; - Пін для першої кнопки
+const int buttonPin2 = D6; - Пін для другої кнопки
+const int adaptiveButtonPin = D7; - Пін для кнопки адаптивного керування
+const char* apiKey = "openweathermap_api_key"; - Ключ API для веб-сервісу OpenWeatherMap
+const char* city = "Ternopil"; - Місто для отримання погодних даних
+const char* country = "UA"; - Країна для отримання погодних даних
+const int photocellIndoorPin = A0; - Аналоговий пін для вимірювання освітленості в приміщенні
+const int photocellOutdoorPin = A0; // Використовуйте A0 або інший доступний аналоговий пін - Аналоговий пін для вимірювання освітленості на вулиці
+bool adaptiveSchedule[7] = {true, true, true, true, true, true, true}; - Розклад для адаптивного керування, де true вказує на активність для кожного дня тижня
+const int manualOnHour1 = 10; - Година ввімкнення ручного керування першим реле
+const int manualOffHour1 = 16; - Година вимкнення ручного керування першим реле
+const int manualOnHour2 = 18; - Година ввімкнення ручного керування другим реле
+const int manualOffHour2 = 22; - Година вимкнення ручного керування другим реле
+const int desiredLumensIndoor = 500; - Бажане значення освітленості в приміщенні
+const int desiredLumensOutdoor = 300; - Бажане значення освітленості на вулиці
+```
 ### Функціонал
 
 1. **Автоматичний режим астрономічного керування**: Реле 1 буде вмикатись згідно годин сходу та заходу сонця. Реле 2 буде вмикатись після заходу сонця та вимикатись перед сходом сонця. Це забезпечує автоматичне керування освітленням у відповідності до доби.
