@@ -92,7 +92,7 @@ void loop() {
 
   if (manualControl2) {
     digitalWrite(relayPin2, HIGH);
-  } else if (currentHour >= shiftedSunsetHour && currentHour < shiftedSunriseHour + 24) {
+  } else if (currentHour >= shiftedSunsetHour || currentHour < shiftedSunriseHour) {
     digitalWrite(relayPin2, HIGH);
   } else if (currentHour >= manualOnHour2 && currentHour < manualOffHour2) {
     digitalWrite(relayPin2, HIGH);
@@ -122,8 +122,10 @@ void toggleRelay(int pin) {
 int getSunriseHour() {
   String url = "http://api.openweathermap.org/data/2.5/weather?q=" + String(city) + "," + String(country) + "&appid=" + String(apiKey);
   HTTPClient http;
+  WiFiClient client; // Create a WiFiClient instance
 
-  http.begin(url);
+  http.begin(client, url); // Use the new begin syntax
+
   int httpCode = http.GET();
 
   if (httpCode == HTTP_CODE_OK) {
@@ -145,8 +147,10 @@ int getSunriseHour() {
 int getSunsetHour() {
   String url = "http://api.openweathermap.org/data/2.5/weather?q=" + String(city) + "," + String(country) + "&appid=" + String(apiKey);
   HTTPClient http;
+  WiFiClient client; // Create a WiFiClient instance
 
-  http.begin(url);
+  http.begin(client, url); // Use the new begin syntax
+
   int httpCode = http.GET();
 
   if (httpCode == HTTP_CODE_OK) {
